@@ -23,7 +23,7 @@ shinyServer(function(input, output) {
                hora_inic <- sQuote(input$hora_inic)
                hora_fin <- sQuote(input$hora_fin)
                
-               con <- dbConnect(MySQL(), user="root", password="sohma", dbname="datalogger", host="localhost") # conectar
+               con <- dbConnect(MySQL(), user="", password="", dbname="", host="localhost") # conectar
                rs <- dbSendQuery(con, statement=paste("SELECT dlgId, fechaData, horaData, mag0, mag1","FROM dbtable_values","WHERE fechaData BETWEEN", fecha_inic, "AND", fecha_fin, "AND dlgId =",estacion, "AND horaData BETWEEN", hora_inic, "AND", hora_fin,"ORDER BY horaData",sep=" "))
                data <- fetch(rs, n=-1)
                dbClearResult(res=rs)
