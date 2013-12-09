@@ -3,7 +3,7 @@ library(shiny)
 shinyUI(pageWithSidebar(
   
   #### Título de la Aplicación ####
-  headerPanel(title="Vientos", windowTitle="Aplicación en R para análisis de datos de viento"), 
+  headerPanel(title="Pampero APP", windowTitle="Pampero: análisis de vientos"), 
   
   #### Sidebar ####
     sidebarPanel(
@@ -130,7 +130,35 @@ shinyUI(pageWithSidebar(
       tabPanel("Tabla", dataTableOutput("table")), # Tabla
       tabPanel("Rosa de los vientos", plotOutput("plot")), # Plot
       tabPanel("Serie de tiempo", htmlOutput("plot_ts")),
-      tabPanel("Resumen resultados", verbatimTextOutput("summary")) # Resumen
-      )
+      tabPanel("Resumen resultados", verbatimTextOutput("summary")),
+      tabPanel("Acerca de esta APP",
+               h3(p(strong('Descripción'))),
+               p(style="text-align:justify",'Esta aplicación web de R con Shiny se encuentra en desarrollo.'),
+               p(style="text-align:justify",'La aplicación web Pampero está diseñada para permitirle al usuario visualizar y analizar de manera interactiva datos de viento. Está siendo desarrollada en el marco del Proyecto FREPLATA URU/09/G31 dentro del', em('"Programa de Monitoreo y Evaluación y Sistema de Información Integrado y establecido para la toma de decisiones y la Gestión del Río de la Plata y su Frente Marítimo".'),'El objetivo es generar una herramienta que permita a los usuarios analizar datos de viento provenientes de las estaciones meteorológicas de la Boya oceanográfica o Pilote Norden.'),
+               p(style="text-align:justify",'La mayor parte del software empleado para desarrollar esta aplicación es libre, eso quiere decir que garantiza al usuario la libertad de poder usarlo, estudiarlo, compartirlo (copiarlo), y modificarlo. El software R es un proyecto de software libre que es colaborativo y tiene muchos contribuyentes.'),
+               tags$hr(),
+               h3(p(strong('Guía de usuario'))),
+               HTML('<div style="clear: left;"><img src="https://dl.dropboxusercontent.com/u/49775366/Ema/PDF.png" alt="" style="width: 5%; height: 5%; float: left; margin-right:5px" /></div>'),
+               br(),
+               a('Ema web app', href="https://dl.dropboxusercontent.com/u/49775366/Ema/Gu%C3%ADa%20de%20usuario%20Ema%20web%20app.pdf", target="_blank"),
+               tags$hr(),
+               h3(p(strong('Código fuente'))),
+               HTML('<div style="clear: left;"><img src="https://dl.dropboxusercontent.com/u/49775366/Ema/github-10-512.png" alt="" style="width: 5%; height: 5%; float: left; margin-right:5px" /></div>'),
+               br(),
+               a('Repositorio GitHub', href="https://github.com/guzmanlopez/Ema.git", target="_blank"),
+               tags$hr(),
+               h3(p(strong('Referencias'))),
+               p(style="text-align:justify",strong('R Core Team (2013).'),'R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. ISBN 3-900051-07-0, URL',a("http://www.R-project.org/", href="http://www.R-project.org/",target="_blank")),
+               p(style="text-align:justify",strong('RStudio and Inc. (2013).'),'shiny: Web Application Framework for R. R package version 0.8.0.',a("http://CRAN.R-project.org/package=shiny", href="http://CRAN.R-project.org/package=shiny",target="_blank")),
+               p(style="text-align:justify",strong('Dan Kelley (2013).'),'oce: Analysis of Oceanographic data. R package version 0.9-12.',a("http://CRAN.R-project.org/package=oce",href="http://CRAN.R-project.org/package=oce",target="_blank")),
+               p(style="text-align:justify",strong('Markus Gesmann & Diego de Castillo.'),'Using the Google Visualisation API with R. The R Journal, 3(2):40-44, December 2011.'),
+               p(style="text-align:justify",strong('Jeffrey A. Ryan & Joshua M. Ulrich (2013).'),'xts: eXtensible Time Series. R package version 0.9-7.',a("http://r-forge.r-project.org/projects/xts/",href="http://r-forge.r-project.org/projects/xts/",target="_blank")),
+               p(style="text-align:justify",strong('Karoly Antal. (2012).'),'gnumeric: Read data from files readable by gnumeric. R package version 0.7-2.',a("http://CRAN.R-project.org/package=gnumeric",href="http://CRAN.R-project.org/package=gnumeric",target="_blank")),
+               tags$hr(),
+               HTML('<div style="clear: left;"><img src="https://dl.dropboxusercontent.com/u/49775366/Ema/foto_perfil.jpg" alt="" style="float: left; margin-right:5px" /></div>'),
+               strong('Autor'),
+               p(a('Guzmán López', href="http://www.linkedin.com/pub/guzm%C3%A1n-l%C3%B3pez/59/230/812", target="_blank"),' - guzilop@gmail.com', br(),'Biólogo | Asistente para el manejo de información oceanográfica',br(),a('Proyecto FREPLATA - URU/09/G31', href="http://www.freplata.org/", target="_blank")),br())
+                )
     )
-))
+  )
+        )   
