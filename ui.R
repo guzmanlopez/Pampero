@@ -8,7 +8,7 @@ shinyUI(pageWithSidebar(
   #### Sidebar ####
     sidebarPanel(
     
-    imageOutput(outputId="logo", height=50), ### LOGO
+    imageOutput(outputId="logo", height=60), ### LOGO
     
     conditionalPanel(
       condition="input.tabs=='Tabla'", ### TABLA
@@ -17,9 +17,7 @@ shinyUI(pageWithSidebar(
       
       wellPanel(
         strong('Cargar datos desde:'), br(), br(),
-      selectInput('tipo_archivo', "", c("Archivo de texto"='.csv',
-                                                            "Archivo de Microsoft Excel"='.xls',
-                                                            "Base de datos"='mysql'))
+      selectInput('tipo_archivo', "", c("Archivo de texto"='.csv', "Archivo de Microsoft Excel"='.xls',"Base de datos"='mysql'))
       ),
       
       conditionalPanel(
@@ -29,8 +27,8 @@ shinyUI(pageWithSidebar(
         wellPanel(
           strong('Opciones'),br(),br(),  
           checkboxInput('header', 'Cabecera', TRUE),
-          selectInput('sep', 'Separadores',c('Coma'=',', 'Punto y coma'=';', 'Tabulador'='\t'),'Coma',FALSE),
-          selectInput('quote', 'Comillas', c("Ninguna"='','Doble'='"','Simple'="'"),'Ninguna',FALSE),
+          selectInput('sep', 'Separador de campos',c('Coma'=',','Punto y coma'=';','Tabulador'='\t'),'Coma',FALSE),
+          selectInput('quote', 'Delimitador de texto', c("Ninguno"='','Comillas dobles'='"','Comillas simples'="'"),'Ninguna',FALSE),
           selectInput('dec', 'Separador decimal', c(Punto=".", Coma=","),'Punto',FALSE),
           numericInput('skip',"Leer desde línea:",value="0"),
           tags$hr(),
@@ -41,7 +39,7 @@ shinyUI(pageWithSidebar(
                                 "ej. 28/06/2009 22:50:60"="%d/%m/%Y %H:%M:%S",
                                 "ej. 28/06/09 22:50:60"="%d/%m/%y %H:%M:%S",
                                 "ej. 28-06-09 22:50:60"="%d-%m-%y %H:%M:%S"))
-        )
+          )
         ),
       
       conditionalPanel(
@@ -68,11 +66,11 @@ shinyUI(pageWithSidebar(
         
        conditionalPanel(
          condition="input.tipo_archivo=='mysql'", ### MySQL
+        imageOutput(outputId="logo2",height=50), ### LOGO
+        br(),
+        radioButtons('estacion', 'Estación meteorológica:', c("Boya oceanográfica"='Boya Oceanográfica', "Pilote Norden"='Pilote Norden', "Torre Oyarvide"='Torre Oyarvide')),
         tags$hr(),
-        imageOutput(outputId="logo2",height=80), ### LOGO
-        radioButtons('estacion', 'Estación meteorológica:', c("Punta Brava"='DL02', "Isla de Flores"='DL01', "La Paloma"='DL03', "José Ignacio"='DL04')),
-        tags$hr(),
-        dateRangeInput('dates', 'Fechas', start=Sys.Date()-30, end=Sys.Date(), format="dd/mm/yyyy", separator="-", weekstart=1, language="es"),
+        dateRangeInput('dates', 'Fechas', start="2009-11-26", end="2011-04-27", format="dd/mm/yyyy", separator="-", weekstart=1, language="es"),
         textInput('hora_inic', 'Hora inicial', c("00:00:00")),
         textInput('hora_fin', 'Hora final', c("23:59:59")),
         HTML("<button id=\"enviar_consulta\" type=\"button\" class=\"btn action-button btn-primary\">Enviar consulta</button>"),
@@ -130,30 +128,32 @@ shinyUI(pageWithSidebar(
       tabPanel("Tabla", dataTableOutput("table")), # Tabla
       tabPanel("Rosa de los vientos", plotOutput("plot")), # Plot
       tabPanel("Serie de tiempo", htmlOutput("plot_ts")),
-      tabPanel("Resumen resultados", verbatimTextOutput("summary")),
+      tabPanel("Resumen", verbatimTextOutput("summary")),
       tabPanel("Acerca de esta APP",
                h3(p(strong('Descripción'))),
                p(style="text-align:justify",'Esta aplicación web de R con Shiny se encuentra en desarrollo.'),
                p(style="text-align:justify",'La aplicación web Pampero está diseñada para permitirle al usuario visualizar y analizar de manera interactiva datos de viento. Está siendo desarrollada en el marco del Proyecto FREPLATA URU/09/G31 dentro del', em('"Programa de Monitoreo y Evaluación y Sistema de Información Integrado y establecido para la toma de decisiones y la Gestión del Río de la Plata y su Frente Marítimo".'),'El objetivo es generar una herramienta que permita a los usuarios analizar datos de viento provenientes de las estaciones meteorológicas de la Boya oceanográfica o Pilote Norden.'),
-               p(style="text-align:justify",'La mayor parte del software empleado para desarrollar esta aplicación es libre, eso quiere decir que garantiza al usuario la libertad de poder usarlo, estudiarlo, compartirlo (copiarlo), y modificarlo. El software R es un proyecto de software libre que es colaborativo y tiene muchos contribuyentes.'),
+               p(style="text-align:justify",'La mayor parte del software empleado para desarrollar esta aplicación es libre, eso quiere decir que garantiza al usuario la libertad de poder usarlo, estudiarlo, compartirlo (copiarlo) y modificarlo. El software R es un proyecto de software libre que es colaborativo y tiene muchos contribuyentes.'),
                tags$hr(),
                h3(p(strong('Guía de usuario'))),
                HTML('<div style="clear: left;"><img src="https://dl.dropboxusercontent.com/u/49775366/Ema/PDF.png" alt="" style="width: 5%; height: 5%; float: left; margin-right:5px" /></div>'),
                br(),
-               a('Ema web app', href="https://dl.dropboxusercontent.com/u/49775366/Ema/Gu%C3%ADa%20de%20usuario%20Ema%20web%20app.pdf", target="_blank"),
+               a('Pampero web app', href="https://dl.dropboxusercontent.com/u/49775366/Ema/Gu%C3%ADa%20de%20usuario%20Ema%20web%20app.pdf", target="_blank"),
                tags$hr(),
                h3(p(strong('Código fuente'))),
                HTML('<div style="clear: left;"><img src="https://dl.dropboxusercontent.com/u/49775366/Ema/github-10-512.png" alt="" style="width: 5%; height: 5%; float: left; margin-right:5px" /></div>'),
                br(),
-               a('Repositorio GitHub', href="https://github.com/guzmanlopez/Ema.git", target="_blank"),
+               a('Repositorio GitHub', href="https://github.com/guzmanlopez/Pampero.git", target="_blank"),
                tags$hr(),
                h3(p(strong('Referencias'))),
                p(style="text-align:justify",strong('R Core Team (2013).'),'R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. ISBN 3-900051-07-0, URL',a("http://www.R-project.org/", href="http://www.R-project.org/",target="_blank")),
                p(style="text-align:justify",strong('RStudio and Inc. (2013).'),'shiny: Web Application Framework for R. R package version 0.8.0.',a("http://CRAN.R-project.org/package=shiny", href="http://CRAN.R-project.org/package=shiny",target="_blank")),
-               p(style="text-align:justify",strong('Dan Kelley (2013).'),'oce: Analysis of Oceanographic data. R package version 0.9-12.',a("http://CRAN.R-project.org/package=oce",href="http://CRAN.R-project.org/package=oce",target="_blank")),
+               p(style="text-align:justify",strong('David Carslaw y Karl Ropkins (2013).'),'openair: Open-source tools for the analysis of air pollution data. R package version 0.9-0.',a("http://CRAN.R-project.org/package=openair",href="http://CRAN.R-project.org/package=openair",target="_blank")),
                p(style="text-align:justify",strong('Markus Gesmann & Diego de Castillo.'),'Using the Google Visualisation API with R. The R Journal, 3(2):40-44, December 2011.'),
                p(style="text-align:justify",strong('Jeffrey A. Ryan & Joshua M. Ulrich (2013).'),'xts: eXtensible Time Series. R package version 0.9-7.',a("http://r-forge.r-project.org/projects/xts/",href="http://r-forge.r-project.org/projects/xts/",target="_blank")),
                p(style="text-align:justify",strong('Karoly Antal. (2012).'),'gnumeric: Read data from files readable by gnumeric. R package version 0.7-2.',a("http://CRAN.R-project.org/package=gnumeric",href="http://CRAN.R-project.org/package=gnumeric",target="_blank")),
+               p(style="text-align:justify",strong('R Special Interest Group on Databases (2013).'),'DBI: R Database Interface. R package version 0.2-7.',a("http://CRAN.R-project.org/package=DBI",href="http://CRAN.R-project.org/package=DBI",target="_blank")),
+               p(style="text-align:justify",strong('David A. James y Saikat DebRoy (2011).'),'RMySQL: R interface to the MySQL database. R package version 0.8-0.',a("http://CRAN.R-project.org/package=RMySQL",href="http://CRAN.R-project.org/package=RMySQL",target="_blank")),
                tags$hr(),
                HTML('<div style="clear: left;"><img src="https://dl.dropboxusercontent.com/u/49775366/Ema/foto_perfil.jpg" alt="" style="float: left; margin-right:5px" /></div>'),
                strong('Autor'),
