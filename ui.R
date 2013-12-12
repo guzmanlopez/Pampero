@@ -138,7 +138,7 @@ shinyUI(pageWithSidebar(
                h3(p(strong('Guía de usuario'))),
                HTML('<div style="clear: left;"><img src="https://dl.dropboxusercontent.com/u/49775366/Ema/PDF.png" alt="" style="width: 5%; height: 5%; float: left; margin-right:5px" /></div>'),
                br(),
-               a('Pampero web app', href="https://dl.dropboxusercontent.com/u/49775366/Ema/Gu%C3%ADa%20de%20usuario%20Ema%20web%20app.pdf", target="_blank"),
+               a('Pampero web app', href="https://dl.dropboxusercontent.com/u/49775366/Pampero/Gu%C3%ADa%20de%20usuario%20Pampero%20web%20app.pdf", target="_blank"),
                tags$hr(),
                h3(p(strong('Código fuente'))),
                HTML('<div style="clear: left;"><img src="https://dl.dropboxusercontent.com/u/49775366/Ema/github-10-512.png" alt="" style="width: 5%; height: 5%; float: left; margin-right:5px" /></div>'),
