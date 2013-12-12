@@ -97,7 +97,7 @@ shinyUI(pageWithSidebar(
       
       wellPanel(
         strong('Estadística'), br(), br(),
-      selectInput("statistic", "", choices=c("Proporción de la frecuencia"="prop.count", "Contribución proporcional al promedio"="prop.mean", "Conteo absoluto"="abs.count"), selected="Proporción de la frecuencia")
+      selectInput("statistic", "", choices=c("Frecuencia"="prop.count", "Contribución al promedio"="prop.mean", "Conteo absoluto"="abs.count"), selected="Proporción de la frecuencia")
       ),
       
       wellPanel(
@@ -128,11 +128,11 @@ shinyUI(pageWithSidebar(
       tabPanel("Tabla", dataTableOutput("table")), # Tabla
       tabPanel("Rosa de los vientos", plotOutput("plot")), # Plot
       tabPanel("Serie de tiempo", htmlOutput("plot_ts")),
-      tabPanel("Resumen", verbatimTextOutput("summary")),
+      tabPanel("Resumen", htmlOutput("summary")),
       tabPanel("Acerca de esta APP",
                h3(p(strong('Descripción'))),
                p(style="text-align:justify",'Esta aplicación web de R con Shiny se encuentra en desarrollo.'),
-               p(style="text-align:justify",'La aplicación web Pampero está diseñada para permitirle al usuario visualizar y analizar de manera interactiva datos de viento. Está siendo desarrollada en el marco del Proyecto FREPLATA URU/09/G31 dentro del', em('"Programa de Monitoreo y Evaluación y Sistema de Información Integrado y establecido para la toma de decisiones y la Gestión del Río de la Plata y su Frente Marítimo".'),'El objetivo es generar una herramienta que permita a los usuarios analizar datos de viento provenientes de las estaciones meteorológicas de la Boya oceanográfica o Pilote Norden.'),
+               p(style="text-align:justify",'La aplicación web Pampero está diseñada para permitirle al usuario visualizar y analizar de manera interactiva datos de viento. Está siendo desarrollada en el marco del Proyecto FREPLATA URU/09/G31 dentro del', em('"Programa de Monitoreo y Evaluación y Sistema de Información Integrado y establecido para la toma de decisiones y la Gestión del Río de la Plata y su Frente Marítimo".'),'El objetivo era generar una herramienta que permita a los usuarios analizar datos de viento provenientes de las estaciones meteorológicas de la Boya oceanográfica o de Pilote Norden.'),
                p(style="text-align:justify",'La mayor parte del software empleado para desarrollar esta aplicación es libre, eso quiere decir que garantiza al usuario la libertad de poder usarlo, estudiarlo, compartirlo (copiarlo) y modificarlo. El software R es un proyecto de software libre que es colaborativo y tiene muchos contribuyentes.'),
                tags$hr(),
                h3(p(strong('Guía de usuario'))),
