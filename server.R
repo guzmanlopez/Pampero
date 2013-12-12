@@ -170,7 +170,7 @@ output$variables <- renderUI({
     
     mydata_reshape <- reshape(data=mydata, varying=input$var, v.names="Valores", timevar="Variable", times=input$var, direction="long", idvar="Valores_ID", drop=setdiff(names(mydata),c(input$date_var_ts,input$var)))
     
-    return(gvisAnnotatedTimeLine(data=mydata_reshape, datevar=input$date_var_ts, numvar="Valores", idvar="Variable", options=list(gvis.language="es", dateFormat='HH:mm - dd/MM/yyyy', width=800, height=400)))
+    return(gvisAnnotatedTimeLine(data=mydata_reshape, datevar=input$date_var_ts, numvar="Valores", idvar="Variable", options=list(gvis.language="es", dateFormat='HH:mm - dd/MM/yyyy', width=750, height=450, scaleType='allmaximized', scaleColumns='[0,1,2]')))
     
   })  
   
@@ -200,6 +200,123 @@ output$variables <- renderUI({
     mydata <- datasetInput()
     return(mydata)
       })
+
+### Resumen
+output$summary <- renderGvis({
+  
+    datos <- datasetInput()
+    tabla_resumen <- function(datos){
+      
+      if(input$tipo_archivo=='mysql') {
+        
+      columnas <- colnames(datos)[-c(1:5)]
+      mat <- matrix(nrow=length(columnas), ncol=6, dimnames=list(c(columnas),c("Promedio", "ds", "Mediana", "Máximo", "Mínimo", "n")))
+      
+      # Promedios
+      promedios <- numeric()
+      for(i in 1:length(columnas))
+        promedios[i] <- mean(datos[,columnas[i]], na.rm=TRUE)
+      
+      # Ds
+      ds <- numeric()
+      for(i in 1:length(columnas))
+        ds[i] <- sd(datos[,columnas[i]], na.rm=TRUE)
+      
+      # Mediana
+      med <- numeric()
+      for(i in 1:length(columnas))
+        med[i] <- median(datos[,columnas[i]], na.rm=TRUE)
+      
+      # Máximo
+      max <- numeric()
+      for(i in 1:length(columnas))
+        max[i] <- max(datos[,columnas[i]], na.rm=TRUE)
+      
+      # Mínimo
+      min <- numeric()
+      for(i in 1:length(columnas))
+        min[i] <- min(datos[,columnas[i]], na.rm=TRUE)
+      
+      # n
+      n <- numeric()
+      for(i in 1:length(columnas))
+        n[i] <- length(datos[,columnas[i]])
+      
+      # Cargar datos a matriz
+      
+      mat[1:nrow(mat),1] <- promedios
+      mat[1:nrow(mat),2] <- ds
+      mat[1:nrow(mat),3] <- med
+      mat[1:nrow(mat),4] <- max
+      mat[1:nrow(mat),5] <- min
+      mat[1:nrow(mat),6] <- n
+      
+      return(round(mat, digits=2))
+      
+      }
+      if(input$tipo_archivo!='mysql') {
+        
+        columnas <- colnames(datos)[c(-1,-2)]
+        mat <- matrix(nrow=length(columnas), ncol=6, dimnames=list(c(columnas),c("Promedio", "ds", "Mediana", "Máximo", "Mínimo", "n")))
+        
+        # Promedios
+        promedios <- numeric()
+        for(i in 1:length(columnas))
+          promedios[i] <- mean(datos[,columnas[i]], na.rm=TRUE)
+        
+        # Ds
+        ds <- numeric()
+        for(i in 1:length(columnas))
+          ds[i] <- sd(datos[,columnas[i]], na.rm=TRUE)
+        
+        # Mediana
+        med <- numeric()
+        for(i in 1:length(columnas))
+          med[i] <- median(datos[,columnas[i]], na.rm=TRUE)
+        
+        # Máximo
+        max <- numeric()
+        for(i in 1:length(columnas))
+          max[i] <- max(datos[,columnas[i]], na.rm=TRUE)
+        
+        # Mínimo
+        min <- numeric()
+        for(i in 1:length(columnas))
+          min[i] <- min(datos[,columnas[i]], na.rm=TRUE)
+        
+        # n
+        n <- numeric()
+        for(i in 1:length(columnas))
+          n[i] <- length(datos[,columnas[i]])
+        
+        # Cargar datos a matriz
+        
+        mat[1:nrow(mat),1] <- promedios
+        mat[1:nrow(mat),2] <- ds
+        mat[1:nrow(mat),3] <- med
+        mat[1:nrow(mat),4] <- max
+        mat[1:nrow(mat),5] <- min
+        mat[1:nrow(mat),6] <- n
+        
+        return(round(mat, digits=2))
+        
+      }
+        
+    }
+    
+    if(input$tipo_archivo=='mysql') {
+    mat <- data.frame("Variable"=colnames(datos)[-c(1:5)], as.data.frame(tabla_resumen(datos=datos),row.names=FALSE))
+    resumen_datos <- gvisTable(data=mat)
+    return(resumen_datos)
+    }
+    if(input$tipo_archivo!='mysql') {
+      mat <- data.frame("Variable"=colnames(datos)[c(-1,-2)], as.data.frame(tabla_resumen(datos=datos),row.names=FALSE))
+      resumen_datos <- gvisTable(data=mat)
+      return(resumen_datos)
+    }
+    
+}
+                             )
   
 ### Descargar desde Base de Datos ####
   output$descarga <- downloadHandler(
