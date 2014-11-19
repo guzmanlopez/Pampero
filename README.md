@@ -7,24 +7,24 @@ Requisitos
 ===
 
 ```R
-library(shiny) 
-library(openair) 
-library(gnumeric) 
-library(googleVis)
+library('shiny') 
+library('openair') 
+library('gnumeric') 
+library('googleVis')
 ```
 
 Para conexión a base de datos:
 
 ```R
-library(DBI)
-library(RMySQL)
+library('DBI')
+library('RMySQL')
 ```
 
 Ejecutar app desde R: 
 ===
 
 ```R
-runGitHub("Pampero", "guzmanlopez")
+runGitHub('Pampero', 'guzmanlopez')
 ```
 
 Capturas de pantalla
