@@ -30,3 +30,20 @@ runGitHub("Pampero", "guzmanlopez")
 Capturas de pantalla
 ===
 
+Cargar datos:
+![Image](https://raw.githubusercontent.com/guzmanlopez/Pampero/master/Figuras/captura-de-pantalla-01.png)
+
+Rosa de los vientos:
+![Image](https://raw.githubusercontent.com/guzmanlopez/Pampero/master/Figuras/captura-de-pantalla-02.png)
+
+Rosa de los vientos estacional:
+![Image](https://raw.githubusercontent.com/guzmanlopez/Pampero/master/Figuras/captura-de-pantalla-03.png)
+
+Línea de tiempo:
+![Image](https://raw.githubusercontent.com/guzmanlopez/Pampero/master/Figuras/captura-de-pantalla-04.png)
+
+Estadísticas básicas:
+![Image](https://raw.githubusercontent.com/guzmanlopez/Pampero/master/Figuras/captura-de-pantalla-05.png)
+
+Acerca de la app:
+![Image](https://raw.githubusercontent.com/guzmanlopez/Pampero/master/Figuras/captura-de-pantalla-06.png)
