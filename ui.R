@@ -8,7 +8,7 @@ shinyUI(pageWithSidebar(
   #### Sidebar ####
     sidebarPanel(
     
-    imageOutput(outputId="logo", height=60), ### LOGO
+      HTML('<div style="clear: left;"><img src="https://raw.githubusercontent.com/guzmanlopez/Pampero/master/Figuras/logos_viento_2.png"/></div>'), ### LOGO
     
     conditionalPanel(
       condition="input.tabs=='Tabla'", ### TABLA
@@ -66,7 +66,7 @@ shinyUI(pageWithSidebar(
         
        conditionalPanel(
          condition="input.tipo_archivo=='mysql'", ### MySQL
-        imageOutput(outputId="logo2",height=50), ### LOGO
+         HTML('<div style="clear: left;"><img src="https://raw.githubusercontent.com/guzmanlopez/Pampero/master/Figuras/mariaDB_chico_dos.png"/></div>'), ### LOGO
         br(),
         radioButtons('estacion', 'Estación meteorológica:', c("Boya oceanográfica"='Boya Oceanográfica', "Pilote Norden"='Pilote Norden', "Torre Oyarvide"='Torre Oyarvide')),
         tags$hr(),
@@ -136,14 +136,14 @@ shinyUI(pageWithSidebar(
                p(style="text-align:justify",'La mayor parte del software empleado para desarrollar esta aplicación es libre, eso quiere decir que garantiza al usuario la libertad de poder usarlo, estudiarlo, compartirlo (copiarlo) y modificarlo. El software R es un proyecto de software libre que es colaborativo y tiene muchos contribuyentes.'),
                tags$hr(),
                h3(p(strong('Guía de usuario'))),
-               HTML('<div style="clear: left;"><img src="https://dl.dropboxusercontent.com/u/49775366/Ema/PDF.png" alt="" style="width: 5%; height: 5%; float: left; margin-right:5px" /></div>'),
+               HTML('<div style="clear: left;"><img src="https://raw.githubusercontent.com/guzmanlopez/Pampero/master/Figuras/PDF.png" alt="" style="width: 5%; height: 5%; float: left; margin-right:5px" /></div>'),
                br(),
-               a('Pampero web app', href="https://dl.dropboxusercontent.com/u/49775366/Pampero/Gu%C3%ADa%20de%20usuario%20Pampero%20web%20app.pdf", target="_blank"),
+               a('Pampero web app', href="https://github.com/guzmanlopez/Pampero/blob/master/Manual/Gu%C3%ADa%20de%20usuario%20Pampero%20web%20app.pdf?raw=true", target="_blank"),
                tags$hr(),
                h3(p(strong('Código fuente'))),
-               HTML('<div style="clear: left;"><img src="https://dl.dropboxusercontent.com/u/49775366/Ema/github-10-512.png" alt="" style="width: 5%; height: 5%; float: left; margin-right:5px" /></div>'),
+               HTML('<div style="clear: left;"><img src="https://raw.githubusercontent.com/guzmanlopez/Pampero/master/Figuras/github-10-512.png" alt="" style="width: 5%; height: 5%; float: left; margin-right:5px" /></div>'),
                br(),
-               a('Repositorio GitHub', href="https://github.com/guzmanlopez/Pampero.git", target="_blank"),
+               a('Repositorio GitHub', href="https://github.com/guzmanlopez/Pampero", target="_blank"),
                tags$hr(),
                h3(p(strong('Referencias'))),
                p(style="text-align:justify",strong('R Core Team (2013).'),'R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. ISBN 3-900051-07-0, URL',a("http://www.R-project.org/", href="http://www.R-project.org/",target="_blank")),
@@ -155,9 +155,10 @@ shinyUI(pageWithSidebar(
                p(style="text-align:justify",strong('R Special Interest Group on Databases (2013).'),'DBI: R Database Interface. R package version 0.2-7.',a("http://CRAN.R-project.org/package=DBI",href="http://CRAN.R-project.org/package=DBI",target="_blank")),
                p(style="text-align:justify",strong('David A. James y Saikat DebRoy (2011).'),'RMySQL: R interface to the MySQL database. R package version 0.8-0.',a("http://CRAN.R-project.org/package=RMySQL",href="http://CRAN.R-project.org/package=RMySQL",target="_blank")),
                tags$hr(),
-               HTML('<div style="clear: left;"><img src="https://dl.dropboxusercontent.com/u/49775366/Ema/foto_perfil.jpg" alt="" style="float: left; margin-right:5px" /></div>'),
+               HTML('<div style="clear: left;"><img src="https://raw.githubusercontent.com/guzmanlopez/Pampero/master/Figuras/foto_perfil.jpg" alt="" style="float: left; margin-right:5px" /></div>'),
                strong('Autor'),
-               p(a('Guzmán López', href="http://www.linkedin.com/pub/guzm%C3%A1n-l%C3%B3pez/59/230/812", target="_blank"),' - guzilop@gmail.com', br(),'Biólogo | Asistente para el manejo de información oceanográfica',br(),a('Proyecto FREPLATA - URU/09/G31', href="http://www.freplata.org/", target="_blank")),br())
+               p(a('Guzmán López', href="https://www.linkedin.com/pub/guzm%C3%A1n-l%C3%B3pez/59/230/812", target="_blank"),' - guzilop@gmail.com',br(),'Biólogo | Asistente para el manejo de información oceanográfica',br(),a('Proyecto FREPLATA - URU/09/G31',href="http://www.freplata.org/", target="_blank")),
+               br()) # Acerca de este programa
                 )
     )
   )

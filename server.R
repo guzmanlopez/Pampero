@@ -23,7 +23,7 @@ shinyServer(function(input, output) {
       fecha_inic <- sQuote(paste(input$dates[1],input$hora_inic))
       fecha_fin <- sQuote(paste(input$dates[2],input$hora_fin))
       
-      con <- dbConnect(MySQL(), user="root", password="freplata", dbname="oceano", host="localhost") # conectar
+      con <- dbConnect(MySQL(), user="", password="", dbname="oceano", host="localhost") # conectar
       rs <- dbSendQuery(con, statement=paste("select *","from METEO","where FECHA between", fecha_inic, "and", fecha_fin, "and ESTACION_NOMBRE=",estacion,"order by FECHA",sep=" "))
       data <- fetch(rs, n=-1)
       dbClearResult(res=rs)
@@ -43,16 +43,6 @@ shinyServer(function(input, output) {
     return(mydata)
     
     })
-  
-### Logos ####
-  output$logo <- renderImage({
-      filename <- "~/Documentos/FREPLATA/R2/GUI/logos_viento_app.png"
-      list(src= filename, contentType= 'image/png')
-    }, deleteFile = FALSE)
-  output$logo2 <- renderImage({
-    filename <- "~/Documentos/FREPLATA/APP/Pampero/Logos/Mariadb-logo.png"
-    list(src= filename, contentType= 'image/png')
-  }, deleteFile = FALSE)
   
 ### Encontrar columnas para Rosa de los vientos ####
   output$fecha_col <- renderUI({
