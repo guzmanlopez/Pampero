@@ -157,7 +157,10 @@ shinyUI(pageWithSidebar(
                tags$hr(),
                HTML('<div style="clear: left;"><img src="https://raw.githubusercontent.com/guzmanlopez/Pampero/master/Figuras/foto_perfil.jpg" alt="" style="float: left; margin-right:5px" /></div>'),
                strong('Autor'),
-               p(a('Guzmán López', href="https://www.linkedin.com/pub/guzm%C3%A1n-l%C3%B3pez/59/230/812", target="_blank"),' - guzilop@gmail.com',br(),'Biólogo | Asistente para el manejo de información oceanográfica',br(),a('Proyecto FREPLATA - URU/09/G31',href="http://www.freplata.org/", target="_blank")),
+               p(a('Guzmán López', href="https://www.linkedin.com/pub/guzm%C3%A1n-l%C3%B3pez/59/230/812", target="_blank"),' - (Correo:',
+                 a('guzilop@gmail.com', target="_blank"),' | ', 'Telegram:', a('@Guzman', href="https://telegram.me/Guzman", target="_blank"),')',
+                 br(),
+                 'Biólogo | Asistente para el manejo de información oceanográfica',br(),a('Proyecto FREPLATA - URU/09/G31',href="http://www.freplata.org/", target="_blank")),
                br()) # Acerca de este programa
                 )
     )
